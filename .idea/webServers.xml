@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="13adcbe0-a852-4928-b50e-96fa7c763b11" name="mediatemple" url="http://72.10.37.126">
+        <fileTransfer host="72.10.37.126" port="21" rootFolder="/public_html/">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
