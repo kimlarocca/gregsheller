@@ -4,39 +4,39 @@ $pageID = -1;
 ?>
 <?php
 if (!function_exists("GetSQLValueString")) {
-function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "")
-{
-  if (PHP_VERSION < 6) {
-    $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
-  }
+    function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "")
+    {
+        if (PHP_VERSION < 6) {
+            $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
+        }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
+        $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
-  switch ($theType) {
-    case "text":
-      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-      break;
-    case "long":
-    case "int":
-      $theValue = ($theValue != "") ? intval($theValue) : "NULL";
-      break;
-    case "double":
-      $theValue = ($theValue != "") ? doubleval($theValue) : "NULL";
-      break;
-    case "date":
-      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-      break;
-    case "defined":
-      $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
-      break;
-  }
-  return $theValue;
-}
+        switch ($theType) {
+            case "text":
+                $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+                break;
+            case "long":
+            case "int":
+                $theValue = ($theValue != "") ? intval($theValue) : "NULL";
+                break;
+            case "double":
+                $theValue = ($theValue != "") ? doubleval($theValue) : "NULL";
+                break;
+            case "date":
+                $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+                break;
+            case "defined":
+                $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
+                break;
+        }
+        return $theValue;
+    }
 }
 
 $colname_listing = "-1";
 if (isset($_GET['listingID'])) {
-  $colname_listing = $_GET['listingID'];
+    $colname_listing = $_GET['listingID'];
 }
 mysqli_select_db($cms, $database_cms);
 $query_listing = sprintf("SELECT * FROM listings  LEFT JOIN (SELECT photoAlbums.albumID,photoAlbums.coverPhotoID,photoAlbums.albumName,photos.id,photos.file_name FROM photoAlbums,photos WHERE photoAlbums.coverPhotoID=photos.id)  AS a ON listings.albumID=a.albumID  WHERE listingID = %s", GetSQLValueString($colname_listing, "int"));
@@ -44,17 +44,14 @@ $listing = mysqli_query($cms, $query_listing) or die(mysqli_error($cms));
 $row_listing = mysqli_fetch_assoc($listing);
 $totalRows_listing = mysqli_num_rows($listing);
 $totalRows_photos = 0;
+
 if ($row_listing['albumID'] != NULL){
-
-mysqli_select_db($cms, $database_cms);
-$query_photos = "SELECT * FROM photos WHERE albumID = ".$row_listing['albumID']." ORDER BY photoSequence ASC";
-$photos = mysqli_query($cms, $query_photos) or die(mysqli_error($cms));
-$row_photos = mysqli_fetch_assoc($photos);
-$totalRows_photos = mysqli_num_rows($photos);
-
+    $query_photos = "SELECT * FROM photos WHERE albumID = ".$row_listing['albumID']." ORDER BY photoSequence ASC";
+    $photos = mysqli_query($cms, $query_photos) or die(mysqli_error($cms));
+    $row_photos = mysqli_fetch_assoc($photos);
+    $totalRows_photos = mysqli_num_rows($photos);
 }
 
-mysqli_select_db($cms, $database_cms);
 $query_websiteInfo = "SELECT * FROM cmsWebsites WHERE websiteID = ".$websiteID;
 $websiteInfo = mysqli_query($cms, $query_websiteInfo) or die(mysqli_error($cms));
 $row_websiteInfo = mysqli_fetch_assoc($websiteInfo);
