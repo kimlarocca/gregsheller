@@ -43,7 +43,7 @@ $query_listing = sprintf("SELECT * FROM listings  LEFT JOIN (SELECT photoAlbums.
 $listing = mysqli_query($cms, $query_listing) or die(mysqli_error($cms));
 $row_listing = mysqli_fetch_assoc($listing);
 $totalRows_listing = mysqli_num_rows($listing);
-
+$totalRows_photos = 0;
 if ($row_listing['albumID'] != NULL){
 
 mysqli_select_db($cms, $database_cms);
