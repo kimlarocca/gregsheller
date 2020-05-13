@@ -97,91 +97,90 @@ if ($row_listing['propertyLocation'] != '') $pageTitle = $row_listing['propertyL
 <div class="mainContent">
 <!-- InstanceBeginEditable name="mainContent" -->
 
-  <!-- listing photos -->
-  <?php
-  $currentWidth = 0;
-  $currentHeight = 0;
-if ($totalRows_photos>0){
-?>
-  <div class="main-gallery">
-    <?php do {
-  list($width, $height) = getimagesize('http://4siteusa.com/uploads/'.$row_photos['file_name']);
-
-  ?>
-    <div class="gallery-cell" style="width:<?php echo $width ?>px; height:auto;"><img width="<?php echo $width ?>" height="<?php echo $height ?>" src="http://4siteusa.com/uploads/<?php echo $row_photos['file_name']; ?>"/></div>
-    <?php } while ($row_photos = mysqli_fetch_assoc($photos)); ?>
-  </div>
-  <?php
-}
-?>
-  <?php if ($row_listing['longDescription'] != ''){ ?>
-  <p><?php echo $row_listing['longDescription']; ?></p>
-  <?php } ?>
-  <div class="wf_centered"><a href="contact.php?listingID=<?php echo $row_listing['listingID']; ?>" class="button">request more information</a></div>
-  <?php if ($row_listing['interiorFeatures'] != ''){ ?>
-  <hr />
-  <h2 class="wf_centered">Interior Features</h2>
-  <p><?php echo $row_listing['interiorFeatures']; ?></p>
-  <?php } ?>
-  <?php if ($row_listing['exteriorFeatures'] != ''){ ?>
-  <hr />
-  <h2 class="wf_centered">Exterior Features</h2>
-  <p><?php echo $row_listing['exteriorFeatures']; ?></p>
-  <?php } ?>
-  <hr />
-  <h2 class="wf_centered">Property Details</h2>
-  <table class="wf_centered" style="margin-top:20px" border="0" align="center" cellpadding="5" cellspacing="0">
-    <tbody>
-      <?php if ($row_listing['propertyPrice'] != '' && $row_listing['propertyPrice'] != 0){ ?>
-      <tr align="left" valign="top">
-        <td height="22">Price:</td>
-        <td height="22"><strong><?php echo "$".number_format($row_listing['propertyPrice'],0); ?></strong></td>
-      </tr>
-      <?php } ?>
-      <?php if ($row_listing['propertyStatus'] != ''){ ?>
-      <tr align="left" valign="top">
-        <td height="22">Status:</td>
-        <td height="22"><?php echo $row_listing['propertyStatus']; ?></td>
-      </tr>
-      <?php } ?>
-      <?php if ($row_listing['propertyType'] != ''){ ?>
-    <tr align="left" valign="top">
-      <td height="22">Property Type:</td>
-      <td height="22"><?php echo $row_listing['propertyType']; ?></td>
-    </tr>
-      <?php } ?>
-      <?php if ($row_listing['propertyStyle'] != ''){ ?>
-    <tr align="left" valign="top">
-      <td height="22">Property Style:</td>
-      <td height="22"><?php echo $row_listing['propertyStyle']; ?></td>
-    </tr>
-      <?php } ?>
-      <?php if ($row_listing['mlsNumber'] != ''){ ?>
-    <tr align="left" valign="top">
-      <td height="22">MLS Number:</td>
-      <td height="22"><?php echo $row_listing['mlsNumber']; ?></td>
-    </tr>
-      <?php } ?>
-      <?php if ($row_listing['beds'] != ''){ ?>
-    <tr align="left" valign="top">
-      <td height="22">Beds:</td>
-      <td height="22"><?php echo $row_listing['beds']; ?></td>
-    </tr>
-      <?php } ?>
-      <?php if ($row_listing['fullBaths'] != ''){ ?>
-    <tr align="left" valign="top">
-      <td height="22">Full Baths:</td>
-      <td height="22"><?php echo $row_listing['fullBaths']; ?></td>
-    </tr>
-      <?php } ?>
-      <?php if ($row_listing['halfBaths'] != ''){ ?>
-    <tr align="left" valign="top">
-      <td height="22">Half Baths:</td>
-      <td height="22"><?php echo $row_listing['halfBaths']; ?></td>
-    </tr>
-      <?php } ?>
-    </tbody>
-  </table>
+    <!-- listing photos -->
+    <?php
+    if ($totalRows_photos>0){
+        ?>
+        <div class="main-gallery">
+            <?php do {
+                list($width, $height) = getimagesize('http://4siteusa.com/uploads/'.$row_photos['file_name']);
+                ?>
+                <div class="gallery-cell" style="width:<?php echo $width ?>px; height:auto;"><img width="<?php echo $width ?>" height="<?php echo $height ?>" src="http://4siteusa.com/uploads/<?php echo $row_photos['file_name']; ?>"/></div>
+            <?php } while ($row_photos = mysqli_fetch_assoc($photos)); ?>
+        </div>
+        <?php
+    }
+    ?>
+    <?php if ($row_listing['longDescription'] != ''){ ?>
+        <p style="padding-top:20px"><?php echo $row_listing['longDescription']; ?></p>
+    <?php } ?>
+    <div class="wf_centered"><a href="contact.php?listingID=<?php echo $row_listing['listingID']; ?>" class="button">ask a question?</a><?php if ($row_listing['virtualTourLink'] != ''){ ?>
+            <a href="<?php echo $row_listing['virtualTourLink']; ?>" class="button">auction details</a>
+        <?php } ?></div>
+    <?php if ($row_listing['interiorFeatures'] != ''){ ?>
+        <hr />
+        <h2 class="wf_centered">Interior Features</h2>
+        <p><?php echo $row_listing['interiorFeatures']; ?></p>
+    <?php } ?>
+    <?php if ($row_listing['exteriorFeatures'] != ''){ ?>
+        <hr />
+        <h2 class="wf_centered">Exterior Features</h2>
+        <p><?php echo $row_listing['exteriorFeatures']; ?></p>
+    <?php } ?>
+    <hr />
+    <h2 class="wf_centered">Property Details</h2>
+    <table class="wf_centered" style="margin-top:20px" border="0" align="center" cellpadding="5" cellspacing="0">
+        <tbody>
+        <?php if ($row_listing['propertyPrice'] != '' && $row_listing['propertyPrice'] != 0){ ?>
+            <tr align="left" valign="top">
+                <td height="22">Price:</td>
+                <td height="22"><strong><?php echo "$".number_format($row_listing['propertyPrice'],0); ?></strong></td>
+            </tr>
+        <?php } ?>
+        <?php if ($row_listing['propertyStatus'] != ''){ ?>
+            <tr align="left" valign="top">
+                <td height="22">Status:</td>
+                <td height="22"><?php echo $row_listing['propertyStatus']; ?></td>
+            </tr>
+        <?php } ?>
+        <?php if ($row_listing['propertyType'] != ''){ ?>
+            <tr align="left" valign="top">
+                <td height="22">Property Type:</td>
+                <td height="22"><?php echo $row_listing['propertyType']; ?></td>
+            </tr>
+        <?php } ?>
+        <?php if ($row_listing['propertyStyle'] != ''){ ?>
+            <tr align="left" valign="top">
+                <td height="22">Property Style:</td>
+                <td height="22"><?php echo $row_listing['propertyStyle']; ?></td>
+            </tr>
+        <?php } ?>
+        <?php if ($row_listing['mlsNumber'] != ''){ ?>
+            <tr align="left" valign="top">
+                <td height="22">MLS Number:</td>
+                <td height="22"><?php echo $row_listing['mlsNumber']; ?></td>
+            </tr>
+        <?php } ?>
+        <?php if ($row_listing['beds'] != ''){ ?>
+            <tr align="left" valign="top">
+                <td height="22">Beds:</td>
+                <td height="22"><?php echo $row_listing['beds']; ?></td>
+            </tr>
+        <?php } ?>
+        <?php if ($row_listing['fullBaths'] != ''){ ?>
+            <tr align="left" valign="top">
+                <td height="22">Full Baths:</td>
+                <td height="22"><?php echo $row_listing['fullBaths']; ?></td>
+            </tr>
+        <?php } ?>
+        <?php if ($row_listing['halfBaths'] != ''){ ?>
+            <tr align="left" valign="top">
+                <td height="22">Half Baths:</td>
+                <td height="22"><?php echo $row_listing['halfBaths']; ?></td>
+            </tr>
+        <?php } ?>
+        </tbody>
+    </table>
   <div class="wf_centered"><a href="listings.php" class="button">back to the listings page</a></div>
   <!-- InstanceEndEditable -->
 </div>
