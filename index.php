@@ -4,7 +4,7 @@ $pageID = 45;
 ?>
 <?php
 if (!function_exists("GetSQLValueString")) {
-function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
+function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "")
 {
   if (PHP_VERSION < 6) {
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
@@ -15,7 +15,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   switch ($theType) {
     case "text":
       $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-      break;    
+      break;
     case "long":
     case "int":
       $theValue = ($theValue != "") ? intval($theValue) : "NULL";
@@ -34,23 +34,23 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-mysql_select_db($database_cms, $cms);
+mysqli_select_db($cms, $database_cms);
 $query_Recordset1 = "SELECT * FROM listings  LEFT JOIN (SELECT photoAlbums.albumID,photoAlbums.coverPhotoID,photoAlbums.albumName,photos.id,photos.file_name FROM photoAlbums,photos WHERE photoAlbums.coverPhotoID=photos.id)  AS a ON listings.albumID=a.albumID  WHERE featureListing = 1 AND listings.websiteID = ".$websiteID;
-$Recordset1 = mysql_query($query_Recordset1, $cms) or die(mysql_error());
-$row_Recordset1 = mysql_fetch_assoc($Recordset1);
-$totalRows_Recordset1 = mysql_num_rows($Recordset1);
+$Recordset1 = mysqli_query($query_Recordset1, $cms) or die(mysqli_error($cms));
+$row_Recordset1 = mysqli_fetch_assoc($Recordset1);
+$totalRows_Recordset1 = mysqli_num_rows($Recordset1);
 
-mysql_select_db($database_cms, $cms);
+mysqli_select_db($cms, $database_cms);
 $query_currentPage = "SELECT * FROM cmsPages WHERE pageID = ".$pageID;
-$currentPage = mysql_query($query_currentPage, $cms) or die(mysql_error());
-$row_currentPage = mysql_fetch_assoc($currentPage);
-$totalRows_currentPage = mysql_num_rows($currentPage);
+$currentPage = mysqli_query($query_currentPage, $cms) or die(mysqli_error($cms));
+$row_currentPage = mysqli_fetch_assoc($currentPage);
+$totalRows_currentPage = mysqli_num_rows($currentPage);
 
-mysql_select_db($database_cms, $cms);
+mysqli_select_db($cms, $database_cms);
 $query_websiteInfo = "SELECT * FROM cmsWebsites WHERE websiteID = ".$websiteID;
-$websiteInfo = mysql_query($query_websiteInfo, $cms) or die(mysql_error());
-$row_websiteInfo = mysql_fetch_assoc($websiteInfo);
-$totalRows_websiteInfo = mysql_num_rows($websiteInfo);
+$websiteInfo = mysqli_query($query_websiteInfo, $cms) or die(mysqli_error($cms));
+$row_websiteInfo = mysqli_fetch_assoc($websiteInfo);
+$totalRows_websiteInfo = mysqli_num_rows($websiteInfo);
 ?>
 <?php
 $pageTitle = $row_currentPage['pageTitle'];
@@ -69,8 +69,8 @@ $pageTitle = $row_currentPage['pageTitle'];
 
 <body>
 <!-- header -->
-<div class="header"> 
-  
+<div class="header">
+
   <!-- navigation -->
   <div class="navigation">
     <div class="menu">
@@ -88,24 +88,24 @@ $pageTitle = $row_currentPage['pageTitle'];
 </div>
 <div class="wf_container" style="margin-top:30px">
   <h2 class="wf_centered pageTitles" id="featuredListings">Featured Listings</h2>
-  
+
   <!-- grid -->
   <?php
   if ($totalRows_Recordset1 == 0) { echo '<p class="wf_centered">Sorry, there are no featured listings. Please check back later!<br /><br /></p>'; }
   else {
   ?>
   <div class="masonry js-masonry"  data-masonry-options='{ "isFitWidth": true }'>
-    
+
     <?php do { ?>
   <div class="item"><a href="listing-details.php?listingID=<?php echo $row_Recordset1['listingID']; ?>">
       <div class="overlay-item">
         <div class="item-image"><div class="crop-height">
-		<?php  
-		if ($row_Recordset1['coverPhotoID'] == NULL){ 
+		<?php
+		if ($row_Recordset1['coverPhotoID'] == NULL){
 		?>
         <img class="scale" src="http://4siteusa.com/uploads/comingsoon.jpg">
         <?php
-		} else {			
+		} else {
 		?>
         <img class="scale" src="http://4siteusa.com/uploads/thumb-<?php echo $row_Recordset1['file_name']; ?>">
         <?php
@@ -115,11 +115,11 @@ $pageTitle = $row_currentPage['pageTitle'];
           <h2><?php echo $row_Recordset1['propertyStatus']; ?></h2>
         </div>
 		<p><?php echo $row_Recordset1['shortDescription']; ?></p>
-        
-		<div class="wf_centered"><a class="button" href="listing-details.php?listingID=<?php echo $row_Recordset1['listingID']; ?>">view details</a></div>    
+
+		<div class="wf_centered"><a class="button" href="listing-details.php?listingID=<?php echo $row_Recordset1['listingID']; ?>">view details</a></div>
       </div></a>
     </div>
-    <?php } while ($row_Recordset1 = mysql_fetch_assoc($Recordset1)); ?>
+    <?php } while ($row_Recordset1 = mysqli_fetch_assoc($Recordset1)); ?>
   </div>
   <?php } ?>
   <div class="mainContent" style="padding-top:30px">
@@ -161,10 +161,10 @@ $pageTitle = $row_currentPage['pageTitle'];
     </ul>
   </nav>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
-<script type="text/javascript" src="scripts/masonry.pkgd.min.js"></script> 
-<script type="text/javascript" src="scripts/imagesloaded.pkgd.min.js"></script> 
-<script type="text/javascript" src="scripts/herosJourney.js"></script> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript" src="scripts/masonry.pkgd.min.js"></script>
+<script type="text/javascript" src="scripts/imagesloaded.pkgd.min.js"></script>
+<script type="text/javascript" src="scripts/herosJourney.js"></script>
 <script>
 $(document).ready(function() {
   // initiallize masonry
@@ -179,9 +179,9 @@ $(document).ready(function() {
 </body>
 </html>
 <?php
-mysql_free_result($Recordset1);
+mysqli_free_result($Recordset1);
 
-mysql_free_result($currentPage);
+mysqli_free_result($currentPage);
 
-mysql_free_result($websiteInfo);
+mysqli_free_result($websiteInfo);
 ?>
