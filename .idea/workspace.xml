@@ -2,8 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9a98640-6353-456a-b899-e38d38e98824" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/about.php" beforeDir="false" afterPath="$PROJECT_DIR$/about.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contact.php" beforeDir="false" afterPath="$PROJECT_DIR$/contact.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/listing-details.php" beforeDir="false" afterPath="$PROJECT_DIR$/listing-details.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/listings.php" beforeDir="false" afterPath="$PROJECT_DIR$/listings.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/local-links.php" beforeDir="false" afterPath="$PROJECT_DIR$/local-links.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/localInfo.php" beforeDir="false" afterPath="$PROJECT_DIR$/localInfo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preview.php" beforeDir="false" afterPath="$PROJECT_DIR$/preview.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/private-schools.php" beforeDir="false" afterPath="$PROJECT_DIR$/private-schools.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-info.php" beforeDir="false" afterPath="$PROJECT_DIR$/school-info.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search.php" beforeDir="false" afterPath="$PROJECT_DIR$/search.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +63,7 @@
       <option name="presentableId" value="Default" />
       <updated>1563306060432</updated>
       <workItem from="1563306061695" duration="1490000" />
-      <workItem from="1589394875590" duration="968000" />
+      <workItem from="1589394875590" duration="1122000" />
     </task>
     <servers />
   </component>
