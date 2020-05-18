@@ -244,7 +244,7 @@ jQuery(document).ready(function() {
 <?php
 mysqli_free_result($listing);
 
-mysqli_free_result($photos);
+//mysqli_free_result($photos);
 
 mysqli_free_result($websiteInfo);
 ?>
